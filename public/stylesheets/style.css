@@ -1,0 +1,26 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+th, td { padding: 5px 10px}
+
+#orderslist tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+/* Priorities */
+.level9 { background-color: #d73027; }
+.level8 { background-color: #f46d43; }
+.level7 { background-color: #fdae61; }
+.level6 { background-color: #fee08b; }
+.level5 { background-color: #ffffbf; }
+.level4 { background-color: #d9ef8b; }
+.level3 { background-color: #a6d96a; }
+.level2 { background-color: #66bd63; }
+.level1 { background-color: #1a9850; }
