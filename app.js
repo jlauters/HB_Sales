@@ -10,11 +10,14 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/heartlandburrito');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter    = require('./routes/index');
+var usersRouter    = require('./routes/users');
 var accountsRouter = require('./routes/accounts');
 
 var app = express();
+
+// Express Validator
+const { check, validationResult } = require('express-validator/check');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

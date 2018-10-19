@@ -10,6 +10,61 @@ block content
       // Accounts List
       h2 Current Accounts
 
+      button Add Account
+      button Add Order
+
+      #formcontainer
+          #accountform-wrapper
+              h2 Add Account
+              form#accountform(method='POST' action='/accounts/create')
+                  div.form-group
+                    input(type='text', placeholder='Store Name', name='Store')   
+                  div.form-group
+                    input(type='text', placeholder='Manager Name', name='Manager')
+                  div.form-group
+                    input(type='text', placeholder='Manager Contact', name='manager_contact')
+                  div.form-group
+                    input(type='text', placeholder='Store Phone', name='store_phone')
+                  div.form-group
+                    input(type='text', placeholder='Store Address', name='store_address')
+                  div.form-group
+                    input(type='text', placeholder='Store City', name='City')
+                  div.form-group
+                    input(type='text', placeholder='Store State', name='State')
+                  div.form-group
+                    input(type='text', placeholder='Zipcode', name='Zipcode')
+                  div.form-group
+                    button(type='submit') Submit
+
+
+          #orderform-wrapper
+              h2 Add Order
+              form#orderform(method='POST' action='/accounts/add-order')
+
+                  div.form-group
+                    select#store-select(name='Store')
+                        option(value='0') -- Select Store --
+                  div.form-group
+                    input(type='text', placeholder='order date', name='order_date')
+                  div.form-group
+                    input(type='text', placeholder='RBC qty', name='rbc_qty')
+                  div.form-group
+                    input(type='text', placeholder='Sweet Pot qty', name='sweet_qty')
+                  div.form-group
+                    input(type='text', placeholder='Breakfast qty', name='breakfast_qty')
+                  div.form-group
+                    input(type='text', placeholder='Masala qty', name='masala_qty')
+                  div.form-group
+                    input(type='text', placeholder='Green Chile qty', name='green_chile_qty')
+                  div.form-group
+                    input(type='text', placeholder='GC Tofu qty', name='gc_tofu_qty')
+                  div.form-group
+                    input(type='text', placeholder='Thai qty', name='thai_qty')
+                  div.form-group
+                    input(type='text', placeholder='Apple qty', name='apple_qty')
+                  div.form-group
+                    button(type='submit') Submit
+
       #accountslist
           table
               thead
@@ -37,4 +92,3 @@ block content
                   th Thai
                   th Apple
               tbody
-

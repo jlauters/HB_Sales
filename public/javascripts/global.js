@@ -4,7 +4,30 @@ var accountsListData = [];
 
 $(document).ready(function() {
     populateTable();
+    populateAccounts();
 });
+
+function SortByDate(a, b) {
+
+    var aDate = new Date(a.order_date);
+    var bDate = new Date(b.order_date);
+
+    return bDate.getTime() - aDate.getTime();
+}
+
+function populateAccounts() {
+
+    var accountsContent = '<option value="0"> -- Select Store -- </option>';
+    $.getJSON('/accounts/accountnames', function(data) {
+        $.each(data, function() {
+            accountsContent += '<option value="' + this._id + '">' + this.Store + '</option>';
+	});
+
+        $('#store-select').html(accountsContent);    
+
+    });
+	
+}
 
 function populateTable() {
     var tableContent = '';
@@ -54,20 +77,23 @@ function populateTable() {
             store_name = this.Store;
 
             if( undefined !== $(this).attr('orders') ) {
-            $.each(this.orders, function() {
-                orderContent += '<tr>';
-		orderContent += '<td>' + this.order_date + '</td>';
-		orderContent += '<td>' + store_name + '</td>';
-		orderContent += '<td>' + this.rbc_qty + '</td>';
-                orderContent += '<td>' + this.sweet_pot_qty + '</td>';
-		orderContent += '<td>' + this.breakfast_qty + '</td>';
-		orderContent += '<td>' + this.masala_qty + '</td>';
-		orderContent += '<td>' + this.green_chile_qty + '</td>';
-		orderContent += '<td>' + this.gc_tofu_qty + '</td>';
-		orderContent += '<td>' + this.thai_qty + '</td>';
-		orderContent += '<td>' + this.apple_qty + '</td>';
-		orderContent += '</tr>';
-	    });
+
+                this.orders.sort(SortByDate);
+                $.each(this.orders, function() {
+
+                    orderContent += '<tr>';
+		    orderContent += '<td>' + this.order_date + '</td>';
+		    orderContent += '<td>' + store_name + '</td>';
+		    orderContent += '<td>' + this.rbc_qty + '</td>';
+                    orderContent += '<td>' + this.sweet_pot_qty + '</td>';
+		    orderContent += '<td>' + this.breakfast_qty + '</td>';
+		    orderContent += '<td>' + this.masala_qty + '</td>';
+		    orderContent += '<td>' + this.green_chile_qty + '</td>';
+		    orderContent += '<td>' + this.gc_tofu_qty + '</td>';
+		    orderContent += '<td>' + this.thai_qty + '</td>';
+		    orderContent += '<td>' + this.apple_qty + '</td>';
+		    orderContent += '</tr>';
+	        });
             }
 	});
 
