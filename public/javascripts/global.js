@@ -2,9 +2,22 @@
 
 var accountsListData = [];
 
+// populate data on page load
+// - Order and Recent Activity Tables
+// - Populate dynamic dropdowns for forms
 $(document).ready(function() {
     populateTable();
     populateAccounts();
+
+    // Button Listeners
+    $('#add-acct-btn').click(function() {
+        $('#accountform-wrapper').toggle();
+    });
+
+    $('#add-order-btn').click(function() {
+        $('#orderform-wrapper').toggle();
+    });
+
 });
 
 function SortByDate(a, b) {
@@ -20,7 +33,7 @@ function populateAccounts() {
     var accountsContent = '<option value="0"> -- Select Store -- </option>';
     $.getJSON('/accounts/accountnames', function(data) {
         $.each(data, function() {
-            accountsContent += '<option value="' + this._id + '">' + this.Store + '</option>';
+            accountsContent += '<option value="' + this.Store + '">' + this.Store + '</option>';
 	});
 
         $('#store-select').html(accountsContent);    
